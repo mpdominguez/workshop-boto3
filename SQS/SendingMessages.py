@@ -1,0 +1,22 @@
+import boto3
+#Sending a message adds it to the end of the queue:
+# Get the service resource
+sqs = boto3.resource('sqs')
+
+# Get the queue
+queue = sqs.get_queue_by_name(QueueName='test')
+
+# Create a new message
+response = queue.send_message(MessageBody='world')
+
+# The response is NOT a resource, but gives you a message ID and MD5
+print(response.get('MessageId'))
+print(response.get('MD5OfMessageBody'))
+#You can also create messages with custom attributes:
+
+queue.send_message(MessageBody='boto3', MessageAttributes={
+    'Author': {
+        'StringValue': 'Daniel',
+        'DataType': 'String'
+    }
+})
