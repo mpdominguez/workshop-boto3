@@ -1,4 +1,3 @@
 #!/bin/bash
-sudo su -
-pip install --upgrade awscli
-pip install boto3
+sudo pip install --upgrade awscli
+sudo pip install boto3
